@@ -30,8 +30,11 @@ class juzi {
 		} elseif (strpos($req, '讲笑话') === 0 && mb_strlen($req) > 5) {
 			return $this->addGoofy($req, $uid);
 
-		} elseif (strpos($req, 'redis') === 0) {
-			return $this->redis($req);
+		} elseif (strpos($req, 'shatan') === 0) {
+			return $this->googleAuth($req);
+
+		// } elseif (strpos($req, 'redis') === 0) {
+		// 	return $this->redis($req);
 
 		// } elseif (strpos($req, '爸爸') === 0 && mb_strlen($req) > 1) {
 		// 	return $this->father($req);
@@ -179,5 +182,12 @@ class juzi {
 
 		$name = substr($req, 5);
 		return file_get_contents("http://ops.juangua.com/redis/wx.php?name={$name}");
+	}
+
+	private function googleAuth($req) {
+		require_once('GoogleAuthenticator.php');
+		$secret = '6XMMUGLR2O5ZMYKO';
+		$g = new GoogleAuthenticator();
+		return 'Current GoogleAuth code:' . $g->getCode($secret);
 	}
 }

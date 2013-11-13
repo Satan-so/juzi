@@ -12,6 +12,10 @@ class infinity{
 			dbHelper::query("UPDATE `users` SET act = 0 WHERE id = '$uid'");
 			$step = infinityScript::$script['-1'];
 
+		} else if ($req == '新的开始') {
+			dbHelper::query("UPDATE `infinity_users` SET step = 0 WHERE uid = '$uid'");
+			$step = infinityScript::$script['0'];
+
 		} else {
 			$step = $this->getStep($uid);
 
